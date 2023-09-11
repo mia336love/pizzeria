@@ -48,13 +48,12 @@ logInForm.addEventListener("submit", () => {
     password: inputPassword.value,
   };
 
-  //   if (user.login == "") {
-  //     alert("Введите ваш логин");
-  //   } else {
-  //   }
-
-  localStorage.setItem("user", JSON.stringify(user));
-  login(user);
+  if (user.login == "" || user.password == "") {
+    alert("Пожалуйста, заполните все поля");
+  } else {
+    localStorage.setItem("user", JSON.stringify(user));
+    login(user);
+  }
 });
 
 if (localStorage.getItem("user")) {
