@@ -1,9 +1,8 @@
 const cardsRestaurants = document.querySelector(".cards-restaurants");
 
-console.log(cardsRestaurants);
 const renderItems = (data) => {
   data.forEach((item) => {
-    const { image, kitchen, name, prise, products, stars, time_of_delivery } =
+    const { image, kitchen, name, price, products, stars, time_of_delivery } =
       item;
 
     // const a = `<a href="restaurant.html" class="card card-restaurant"> data-products=${products}`;
@@ -28,11 +27,21 @@ const renderItems = (data) => {
           </div>
           <div class="card-info">
             <div class="rating">${stars}</div>
-            <div class="price">От ${prise}</div>
+            <div class="price">От ${price} ₽</div>
             <div class="category">${kitchen}</div>
           </div>
         </div>
     `;
+
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      // const link = a.dataset.products; // json файлы позиций меню рестиков
+
+      localStorage.setItem("restaurant", JSON.stringify(item)); // фулл данные о рестике (объект)
+
+      window.location.href = "/restaurant.html";
+    });
+
     cardsRestaurants.append(a);
   });
 };
