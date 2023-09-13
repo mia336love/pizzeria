@@ -1,8 +1,8 @@
 const restourant = "tanuki";
 const cardsMenu = document.querySelector(".cards-menu");
 
+// изменение данных в заголовке ресторана
 const changeTitle = (restaurant) => {
-  // console.log(restaurant);
   const restaurantTitle = document.querySelector(".restaurant-title"); // name
   const rating = document.querySelector(".rating"); // stars
   const price = document.querySelector(".price"); // price
@@ -12,13 +12,31 @@ const changeTitle = (restaurant) => {
   rating.textContent = restaurant.stars;
   price.textContent = restaurant.price;
   category.textContent = restaurant.kitchen;
+};
 
-  // name / stars / price / kitchen
-}; // изменение данных в заголовке ресторана
+// добавление в корзину
+const cartArray = localStorage.getItem("cart")
+  ? JSON.parse(localStorage.getItem("cart"))
+  : [];
 
+const addToCart = (cartItem) => {
+  if (cartArray.some((item) => item.id === cartItem.id)) {
+    cartArray.map((item) => {
+      if (item.id === cartItem.id) {
+        item.count++;
+      }
+
+      return item;
+    });
+  } else cartArray.push(cartItem);
+
+  localStorage.setItem("cart", JSON.stringify(cartArray));
+};
+
+// отрисовка позиций меню
 const renderItems = (data) => {
   data.forEach((item) => {
-    const { name, description, price, image } = item;
+    const { name, description, id, price, image } = item;
 
     const card = document.createElement("div");
     card.classList.add("card");
@@ -46,6 +64,18 @@ const renderItems = (data) => {
         </div>
     `;
 
+    const inCartBtn = card.querySelector(".button-card-text");
+    inCartBtn.addEventListener("click", () => {
+      const cartItem = {
+        id: id,
+        name: name,
+        price: price,
+        count: 1,
+      };
+
+      addToCart(cartItem);
+    });
+
     cardsMenu.append(card);
   });
 };
@@ -65,5 +95,6 @@ if (localStorage.getItem("restaurant")) {
       console.log(err);
     });
 } else {
-  window.location.href("/");
+  // window.location.href("/");
+  window.location.assign("/");
 }

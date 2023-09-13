@@ -3,7 +3,7 @@ const closeAuth = document.querySelector(".close-auth"); // крестик
 
 const buttonAuth = document.querySelector(".button-auth"); // войти
 const buttonOut = document.querySelector(".button-out"); // выйти
-const cartButton = document.getElementById("button-cart"); // корзина
+const cartButton = document.querySelector(".button-cart"); // корзина
 const userName = document.querySelector(".user-name");
 
 const logInForm = document.getElementById("logInForm"); // submit на отправку данных пользователя
@@ -24,7 +24,7 @@ const login = (user) => {
   buttonOut.style.display = "flex";
   userName.style.display = "flex";
   userName.textContent = user.login;
-  //   cartButton.style.display = "block";
+  cartButton.style.display = "flex";
 
   modalAuth.style.display = "none";
 };
@@ -34,7 +34,7 @@ const logout = () => {
 
   buttonOut.style.display = "none";
   userName.style.display = "none";
-  //   cartButton.style.display = "none";
+  cartButton.style.display = "none";
 
   localStorage.removeItem("user");
 };
