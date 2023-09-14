@@ -13,6 +13,8 @@ const cart = () => {
   const renderCart = (data) => {
     modalBody.innerHTML = "";
 
+    let sum = 0;
+
     data.forEach(({ name, price, id, count }) => {
       const cartDiv = document.createElement("div");
       cartDiv.classList.add("food-row");
@@ -31,6 +33,9 @@ const cart = () => {
       // console.dir(price);
 
       modalBody.append(cartDiv);
+
+      sum += price * count;
+      modalPricetag.textContent = sum;
     });
   };
 
@@ -59,7 +64,6 @@ const cart = () => {
     localStorage.setItem("cart", JSON.stringify(cartArray));
 
     renderCart(cartArray); // обновление значения count
-    changeSum();
   };
 
   const minus = (id) => {
@@ -78,7 +82,6 @@ const cart = () => {
 
     localStorage.setItem("cart", JSON.stringify(cartArray));
     renderCart(cartArray); // обновление значения count
-    changeSum();
   };
 
   modalBody.addEventListener("click", (e) => {
@@ -91,31 +94,7 @@ const cart = () => {
     }
   });
 
-  const changeSum = () => {
-    // const cartArray = JSON.parse(localStorage.getItem("cart"));
-
-    // let sum = 0;
-    // cartArray.forEach((item) => {
-    //   const { name, price, id, count } = item;
-
-    //   sum += price * count;
-    // });
-
-    // modalPricetag.textContent = sum;
-
-    let sum = 0;
-    cartArray.forEach((item) => {
-      const { name, price, id, count } = item;
-
-      sum += price * count;
-    });
-
-    modalPricetag.textContent = sum;
-    // window.location.reload();
-    // modalCart.classList.add("is-open");
-  };
   // оформить заказ
-
   const resetCart = () => {
     modalBody.innerHTML = "";
     localStorage.removeItem("cart");
