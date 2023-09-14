@@ -122,11 +122,21 @@
             <legend class="modal-title">Авторизация</legend>
             <label class="label-auth">
               <span>Логин</span>
-              <input id="login" type="text" />
+              <input
+                id="login"
+                type="text"
+                onKeyUp="if(/[,+=!@#$%^&*';:?<>]/.test(this.value)){this.value='';}"
+                placeholder="ввод только букв (RU/EN) и -"
+              />
             </label>
             <label class="label-auth">
               <span>Пароль</span>
-              <input id="password" type="password" />
+              <input
+                id="password"
+                type="password"
+                onKeyUp="if(/[,/+=!@#$%^&*';:<>]/.test(this.value)){this.value='';}"
+                placeholder="ввод только букв (RU/EN) и -"
+              />
             </label>
           </fieldset>
           <!-- /.modal-body -->

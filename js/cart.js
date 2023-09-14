@@ -35,7 +35,7 @@ const cart = () => {
       modalBody.append(cartDiv);
 
       sum += price * count;
-      modalPricetag.textContent = sum;
+      modalPricetag.textContent = sum + " " + "₽";
     });
   };
 
