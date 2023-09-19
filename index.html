@@ -13,6 +13,7 @@
     <script src="./js/auth.js" defer></script>
     <script src="./js/partners.js" defer></script>
     <script src="./js/cart.js" defer></script>
+    <script src="./js/registration.js" defer></script>
   </head>
 
   <body>
@@ -133,7 +134,7 @@
         <div class="modal-body"></div>
         <!-- /.modal-body -->
         <div class="modal-footer">
-          <span class="modal-pricetag">1250 ₽</span>
+          <span class="modal-pricetag">0 ₽</span>
           <div class="footer-buttons">
             <button class="button button-primary">Оформить заказ</button>
             <button class="button clear-cart">Отмена</button>
@@ -156,7 +157,6 @@
                 id="login"
                 type="text"
                 onKeyUp="if(/[,+=!@#$%^&*';:?<>]/.test(this.value)){this.value='';}"
-                placeholder="ввод только букв (RU/EN) и -"
               />
             </label>
             <label class="label-auth">
@@ -165,7 +165,6 @@
                 id="password"
                 type="password"
                 onKeyUp="if(/[,/+=!@#$%^&*';:<>]/.test(this.value)){this.value='';}"
-                placeholder="ввод только букв (RU/EN) и -"
                 min=""
               />
             </label>
